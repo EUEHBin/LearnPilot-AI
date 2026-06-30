@@ -1,7 +1,118 @@
-node_modules
-dist
-.DS_Store
-*.local
+# =========================
+# LearnPilotAI 根目录 .gitignore
+# Monorepo：apps/web + apps/api + packages/shared
+# =========================
+
+# --- 依赖 ---
+node_modules/
+
+# --- 构建产物 ---
+dist/
+dist-ssr/
+build/
+out/
+*.tsbuildinfo
+
+# 各子包构建目录（显式写出，便于阅读）
+apps/web/dist/
+apps/api/dist/
+packages/*/dist/
+
+# --- 环境变量与密钥 ---
+# 忽略所有真实环境配置，只保留示例文件
 .env
 .env.*
 !.env.example
+!.env.*.example
+
+# --- 日志 ---
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# --- 测试与覆盖率 ---
+coverage/
+.nyc_output/
+__screenshots__/
+
+# --- 缓存 ---
+.eslintcache
+.cache/
+.parcel-cache/
+.turbo/
+.vite/
+*.timestamp-*-*.mjs
+
+# --- 系统文件 ---
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# --- 编辑器 / IDE ---
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json.example
+
+# --- 本地临时文件 ---
+*.local
+*.tmp
+*.temp
+*.bak
+*.swp
+*~
+
+# --- pnpm ---
+.pnpm-store/
+
+# --- Docker / 基础设施本地数据 ---
+# 数据库、向量库等持久化卷（不要提交真实数据）
+infra/docker/data/
+infra/docker/volumes/
+docker-data/
+*.sqlite
+*.sqlite3
+*.db
+
+# --- 上传与存储（文档 / RAG 阶段） ---
+uploads/
+storage/
+tmp/uploads/
+
+# --- NestJS / 后端运行时 ---
+apps/api/.env
+apps/api/dist/
+
+# --- AI / 密钥相关（防止误提交） ---
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+.secrets/
+
+# --- 部署产物 ---
+*.tar.gz
+*.zip
+deploy-artifacts/
+
+# --- 可选：E2E 测试产物（若后续引入 Cypress / Playwright） ---
+cypress/videos/
+cypress/screenshots/
+playwright-report/
+test-results/
+blob-report/
+
+# --- 可选：操作系统包管理器锁文件冲突时本地备份 ---
+# package-lock.json
+# yarn.lock
+# 说明：Monorepo 使用 pnpm，保留 pnpm-lock.yaml，不要忽略
